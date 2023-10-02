@@ -23,26 +23,40 @@ The following GCP APIs will need to be enabled:
 ## Steps to manually create a cluster and deploy the web app
 
 ### Create a repo in Google Artifact Registry
+```
 gcloud artifacts repositories create demo --project=<your_project_id> --repository-format=docker --location=us-central1 --description="Docker repository"
+``````
 
 ### Create the Docker file, tag it, and push it to Google Artifact Registry
+```
 gcloud builds submit --tag us-central1-docker.pkg.dev/<your_project_id>/demo/pod_info .
+```
 
 ### Create a k8s cluster with three nodes
+```
 gcloud container clusters create my-cluster --num-nodes 3
+```
 
 ### Apply the k8s deployement, pods, and service
+```
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
+```
 
 ### View pods with kubectl
+```
 kubectl get pods
+```
 
 ### View deployment with kubectl
+```
 kubectl get deployments
+```
 
 ### View service with kubectl
+```
 kubectl get services
+```
 
 <br/>
 
